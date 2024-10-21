@@ -75,46 +75,47 @@ document.addEventListener('DOMContentLoaded', function () {
   function resetForm() {
     form.reset();
     submitButton.disabled = true;
-    submitButton.classList.add('inactive'); 
+    submitButton.classList.add('inactive');
 
-  submitButton.addEventListener('mouseenter', function () {
-    if (submitButton.disabled) {
-      submitButton.style.borderColor = 'red';  
-    }
-  });
+    submitButton.addEventListener('mouseenter', function () {
+      if (submitButton.disabled) {
+        submitButton.style.borderColor = 'red';
+      }
+    });
 
-  submitButton.addEventListener('mouseleave', function () {
-    if (submitButton.disabled) {
-      submitButton.style.borderColor = '';
-    }
-  });
+    submitButton.addEventListener('mouseleave', function () {
+      if (submitButton.disabled) {
+        submitButton.style.borderColor = '';
+      }
+    });
   
-  validateForm(new Event('input'));
+    validateForm(new Event('input'));
 
  
-  const subfForm = document.querySelector('#subForm');
-  const subButtonSubscrible = document.querySelector('#subscribleButton');
-  const subEmailInput = document.querySelector('#subEmail');
+    const subfForm = document.querySelector('#subForm');
+    const subButtonSubscrible = document.querySelector('#subscribleButton');
+    const subEmailInput = document.querySelector('#subEmail');
 
-  subfForm.addEventListener('submit', validateFormSubscribe);
-  subEmailInput.addEventListener('input', validateFormSubscribe);
+    subfForm.addEventListener('submit', validateFormSubscribe);
+    subEmailInput.addEventListener('input', validateFormSubscribe);
 
-  function validateFormSubscribe(event) {
-    event.preventDefault();
-    const subEmailValue = subEmailInput.value.trim();
+    function validateFormSubscribe(event) {
+      event.preventDefault();
+      const subEmailValue = subEmailInput.value.trim();
 
-    const subEmailPattern = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
-    const isSubEmailValid = subEmailPattern.test(subEmailValue);
-    subButtonSubscrible.classList.add('inactive');
-
-    if (!isSubEmailValid) {
-      subButtonSubscrible.disabled = true;
+      const subEmailPattern = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
+      const isSubEmailValid = subEmailPattern.test(subEmailValue);
       subButtonSubscrible.classList.add('inactive');
-    } else {
-      subButtonSubscrible.disabled = false;
-      subButtonSubscrible.classList.remove('inactive');
+
+      if (!isSubEmailValid) {
+        subButtonSubscrible.disabled = true;
+        subButtonSubscrible.classList.add('inactive');
+      } else {
+        subButtonSubscrible.disabled = false;
+        subButtonSubscrible.classList.remove('inactive');
+      }
     }
-  }
   
-  validateFormSubscribe(new Event('input'));
+    validateFormSubscribe(new Event('input'));
+  };
 });
